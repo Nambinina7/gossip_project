@@ -1,0 +1,45 @@
+<br>
+<div class="text-center">
+	<a class="btn btn-primary" href="/gossips/new">Create_Gossip</a> <br><br>
+
+	<% if flash[:success] %>
+	<div class="alert alert-success"><%= flash[:success]%></div>
+	<% end %>
+	</div><br>
+
+<div class="text-center">
+	<a class="btn btn-primary" href="/user/new">Create_USER</a> <br><br>
+</div>
+
+<div class="text-center">
+
+	<h1 class="my-4">Bienvenue sur The Gossip Project</h1>
+
+		<table class="table table-bordered">
+			<thead>
+				<th>Auteur</th>
+				<th>Gossips</th>
+			</thead>
+
+
+			<tbody>
+				<% @users.each do |user|%>
+				<tr>
+					<td><%= user.first_name %></td>
+
+					<td>
+						<% user.gossips.each do |gossip|%>
+							<a href="/gossips/<%= gossip.id %>"><%= gossip.title %></a><br>
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+				
+		</table>
+
+</div>
+
+
+
+

@@ -1,0 +1,10 @@
+<div class="card mx-auto my-5" style="width: 18rem;">
+  <div class="card-body text-center">
+    <h2 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= @user.age %> ans</h6>
+    <p class="card-text"> <%= @user.description %> </p>
+    <a href="#" class="card-link"><%= @user.email %></a>
+    <a href="#" class="card-link"><%= @user.city.name %></a>
+  </div>
+</div>
+

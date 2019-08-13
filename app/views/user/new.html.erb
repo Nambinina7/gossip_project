@@ -1,0 +1,53 @@
+<html>
+  <body>
+
+    <div class="container text-center">
+      <div class="row">
+        <div class="col mb-4">
+          <h1>Formulaire d'Inscription</h1>
+        </div>
+      </div>
+
+<div class="card-body">
+    <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+      <%= label_tag 'first_name'%>
+      <%= text_field_tag 'first_name',nil, class: 'form-control', placeholder: 'Enter first_name' %>
+      <br /> <br />
+
+      <%= label_tag 'last_name' %>
+      <%= text_area_tag 'last_name' ,nil, class: 'form-control', placeholder: 'Enter last_name'%>
+      <br /> <br />
+
+      <%= label_tag 'email' %>
+      <%= text_area_tag 'email',nil, class: 'form-control', placeholder: 'Enter email' %>
+      <br /> <br />
+
+      <%= label_tag 'age' %>
+      <%= text_area_tag 'age',nil, class: 'form-control', placeholder: 'Enter age' %>
+      <br /> <br />
+      <b>CITY</b>
+    <select name="city_id">
+      <% @cities.each do |city|%>
+      <option value="<%= city.id %>"><%= city.name %></option>
+      <% end %>
+    </select> <br> <br>
+
+      <%= label_tag 'password' %>
+      <%= password_field_tag 'password',nil, class: 'form-control', placeholder: 'password' %>
+      <br /> <br />
+
+      <%= label_tag 'password_cofirmation'%>
+      <%= password_field_tag 'password_cofirmation',nil, class: 'form-control', placeholder: 'password_confirmation' %>
+      <br /> <br />
+
+
+
+
+    <%= submit_tag "CREER", class: "btn btn-primary"%>
+
+    <% end %>
+  </div>
+
+  </body>
+</html>
