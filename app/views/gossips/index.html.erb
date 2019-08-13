@@ -1,4 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/gossips">The Gossip Project</a>
+  <a href="/sessions/destroy"  class="btn btn-primary" data-method = delete> DECONECTION</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+  </div>
+</nav>
+
 <br>
+
 <div class="text-center">
 	<a class="btn btn-primary" href="/gossips/new">Create_Gossip</a> <br><br>
 
@@ -6,10 +19,6 @@
 	<div class="alert alert-success"><%= flash[:success]%></div>
 	<% end %>
 	</div><br>
-
-<div class="text-center">
-	<a class="btn btn-primary" href="/user/new">Create_USER</a> <br><br>
-</div>
 
 <div class="text-center">
 
@@ -37,6 +46,8 @@
 			</tbody>
 				
 		</table>
+
+		<h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
 
 </div>
 
