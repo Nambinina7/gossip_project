@@ -1,4 +1,6 @@
 class GossipsController < ApplicationController
+before_action :authenticate_user
+
   def index
     @users = User.all
     @gossips = Gossip.all
@@ -16,7 +18,7 @@ class GossipsController < ApplicationController
       title = params["title"]
       content = params["content"]
 
-      @user = User.find(11)
+      @user = current_user
 
       @gossips = Gossip.new(title: title, content: content)
       @gossips.user = @user
@@ -55,6 +57,17 @@ class GossipsController < ApplicationController
       @gossips.destroy
       redirect_to gossips_path
   end
+
+   private
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Please log in."
+      redirect_to new_session_path
+    end
+  end
 end
+
+
 
 

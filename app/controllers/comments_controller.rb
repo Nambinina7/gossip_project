@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
       gossip_id = params[:gossip_id]
       @gossips = Gossip.find(gossip_id)
       content = params["content"]
-      @user = User.find(10)
+      @user = current_user
       @comments = Comment.new(content: content)
       @comments.user = @user
       @comments.gossip = @gossips

@@ -1,4 +1,5 @@
-class UserController < ApplicationController
+class UserController < ApplicationController 
+before_action :authenticate_user
   def show
   	id = params["id"]
   	@user = User.find(id)
@@ -16,27 +17,39 @@ class UserController < ApplicationController
       email = params["email"]
       description = params["description"]
       age = params["age"]
-      city_id = params['city_id']
+      city_id = params['city']
       password = params["password"]
       password_confirmation = params["password_confirmation"]
-     
+      city =City.create(name: city_id)
       @user = User.new(first_name: first_name,
-      last_name: last_name,
-      email: email,
-      description: description,
-      age: age,
-      password: password,
-      password_confirmation: password_confirmation,
-)
-        @city = City.find(city_id)
-        @user.city = @city
-        @user.save
-    if @user.save
-      flash[:success] = "Vous êtes bien enregistré !"
-      # log_in(@user)
-      redirect_to gossips_path
-    else
-      render "new"
+        last_name: last_name,
+        email: email,
+        description: description,
+        age: age,
+        password: password,
+        password_confirmation: password_confirmation,
+      )
+        # @city = City.find(city_id)
+        @user.city = city
+
+    if @user.authenticate(password_confirmation)
+      if @user.save
+        log_in(@user)
+        flash[:success] = "Vous êtes bien enregistré !"
+        # log_in(@user)
+        redirect_to gossips_path
+      
+      else
+        render "new"
+      end
+    end
+  end
+   private
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Please log in."
+      redirect_to new_session_path
     end
   end
 end
