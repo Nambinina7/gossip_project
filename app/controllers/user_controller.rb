@@ -1,5 +1,4 @@
-class UserController < ApplicationController 
-before_action :authenticate_user
+class UserController < ApplicationController
   def show
   	id = params["id"]
   	@user = User.find(id)
@@ -42,14 +41,6 @@ before_action :authenticate_user
       else
         render "new"
       end
-    end
-  end
-   private
-
-  def authenticate_user
-    unless current_user
-      flash[:danger] = "Please log in."
-      redirect_to new_session_path
     end
   end
 end
